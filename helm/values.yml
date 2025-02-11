@@ -1,0 +1,32 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: nginx
+            tag: latest
+  service:
+    main:
+      ports:
+        http:
+          port: 80
+          protocol: HTTP
+  ingress:
+    main:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      hosts:
+        - host: test.sysopcloud.online
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port: http
+      tls:
+        - hosts:
+            - test.sysopcloud.online
+          secretName: test

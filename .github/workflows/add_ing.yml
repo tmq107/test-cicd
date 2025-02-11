@@ -30,7 +30,7 @@ jobs:
         with:
           repository: tmq107/test-cicd
           ref: master
-          token: ${{ secrets.GITACTIONS }}
+          token: ${{ secrets.GITACTION }}
           fetch-depth: 0
           path: repo
       

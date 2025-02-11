@@ -23,14 +23,26 @@ jobs:
         run: |
           wget https://github.com/mikefarah/yq/releases/download/v4.45.1/yq_linux_386 -o yq
           sudo mv yq /usr/local/bin/yq
+          rm -rf yq_linux_386
+
+      - uses: actions/checkout@v4
+        name: GitOps - Checkout
+        with:
+          repository: tmq107/test-cicd
+          ref: master
+          token: ${{ secrets.GITACTIONS }}
+          fetch-depth: 0
+          path: repo
       
       - name: Replace host in ingress.yaml
         run: |
+          cd repo
           source $GITHUB_WORKSPACE/.github/workflows/scripts/change_host.sh
           replace_host ${{ env.working_directory }} ${{ env.helmchart_directory }}
 
-      - name: Commit and push changes
-        uses: devops-infra/action-commit-push@master
-        with:
-          github_token: ${{ secrets.GITACTION }}
-          commit_message: new ingress host
+      - name: GitOps - Patch and push
+        run: |
+          git -C repo config user.name "tmq107"
+          git -C repo config user.email "minhquan010710@gmail.com"
+          git -C repo commit -am "update"
+          git -C repo push origin master

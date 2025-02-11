@@ -10,17 +10,16 @@ metadata:
     app.kubernetes.io/kind: service
     app.kubernetes.io/serviceName: backend
     argocd.argoproj.io/instance: test
-  name: new
-  namespace: test
+  name: REPLACE_WITH_NAME
 spec:
   rules:
-    - host: test1.sysopcloud.online
+    - host: REPLACE_WITH_YOUR_DOMAIN
       http:
         paths:
           - backend:
               service:
-                name: test-backend-production-svc
+                name: REPLACE_WITH_YOUR_BACKEND
                 port:
-                  number: 80
+                  number: REPLACE_WITH_YOUR_PORT
             path: /
             pathType: Prefix

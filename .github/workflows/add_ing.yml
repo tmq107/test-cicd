@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'host.yml'
+
+env:
+  working_directory: "host.yml"
+  helmchart_directory: "helmchart"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install YQ 
+        run: |
+          wget https://github.com/mikefarah/yq/releases/download/v4.45.1/yq_linux_386 -o yq
+          sudo mv yq /usr/local/bin/yq
+      
+      - name: Replace host in ingress.yaml
+        run: |
+          source $GITHUB_WORKSPACE/.github/workflows/scripts/change_host.sh
+          replace_host ${{ env.working_directory }} ${{ env.helmchart_directory }}
+
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: new ingress host

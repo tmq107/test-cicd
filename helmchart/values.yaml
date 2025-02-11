@@ -23,7 +23,7 @@ ingress:
     enable: true
     host: "test.sysopcloud.online"
     paths: 
-        - prefix: "/*"
+        - prefix: "/"
 
 configmap:
   env:

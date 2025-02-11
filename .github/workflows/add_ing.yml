@@ -36,9 +36,8 @@ jobs:
       
       - name: Replace host in ingress.yaml
         run: |
-          cd repo
           source $GITHUB_WORKSPACE/.github/workflows/scripts/change_host.sh
-          replace_host ${{ env.working_directory }} ${{ env.helmchart_directory }}
+          replace_host ${{ env.working_directory }} repo/${{ env.helmchart_directory }}
 
       - name: GitOps - Patch and push
         run: |

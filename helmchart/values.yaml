@@ -1,32 +1,30 @@
 global:
-    instance: "production"
-    appName: "test"
+  instance: "production"
+  appName: "test"
 
-# Backend
-backend:
-    type: "service"
+type: "service"
 
-    name: "backend"
+name: "backend"
 
-    image:
-        name: "nginx"
-        tag: "latest"
+image:
+    name: "nginx"
+    tag: "latest"
 
-    clientId : '2515016b-e01f-4d4c-96cb-111184093797'
+clientId : '2515016b-e01f-4d4c-96cb-111184093797'
 
-    port: 80
+port: 80
 
-    sqlServer:
-        server: "sql-ae-eco-data-dev.database.windows.net,1433"
-        databaseName: "sql-ae-eco-db-dev"
-        Schema: "aid_template_angular_dotnet_app_development"
-    
-    ingress: 
-        enable: true
-        host: "test.sysopcloud.online"
-        paths: 
-            - prefix: "/*"
+sqlServer:
+    server: "sql-ae-eco-data-dev.database.windows.net,1433"
+    databaseName: "sql-ae-eco-db-dev"
+    Schema: "aid_template_angular_dotnet_app_development"
 
-    configmap:
-      env:
-        ASPNETCORE_ENVIRONMENT: Development
+ingress: 
+    enable: true
+    host: "test.sysopcloud.online"
+    paths: 
+        - prefix: "/*"
+
+configmap:
+  env:
+    ASPNETCORE_ENVIRONMENT: Development

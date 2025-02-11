@@ -1,92 +1,32 @@
-# Setting global variable
 global:
-  instance: "dev" # Environment
-  appName: "test" # App name
+    instance: "production"
+    appName: "test"
 
-# Name of services
-name: "test"
+# Backend
+backend:
+    type: "service"
 
-# Number of replicas
-replicas: 1
+    name: "backend"
 
-# Image of service
-image:
-  name: "nginx"
-  tag: "test"
+    image:
+        name: "nginx"
+        tag: "latest"
 
+    clientId : '2515016b-e01f-4d4c-96cb-111184093797'
 
-# Port of services
-port: ""
+    port: 80
 
+    sqlServer:
+        server: "sql-ae-eco-data-dev.database.windows.net,1433"
+        databaseName: "sql-ae-eco-db-dev"
+        Schema: "aid_template_angular_dotnet_app_development"
+    
+    ingress: 
+        enable: true
+        host: "test.sysopcloud.online"
+        paths: 
+            - prefix: "/*"
 
-# Resource of service
-resources: {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 200Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-
-
-# Probe for service
-livenessProbe: {}
-  # httpGet:
-  #   path: /Swagger/index.html
-  #   port: 8080
-readinessProbe: {}
-  # httpGet:
-  #   path: /Swagger/index.html
-  #   port: 8080
-
-
-# Type of service (frontend, service, jobs)
-type: ""
-
-
-
-# Client ID and Client Secret
-clientId: ""
-
-
-# Database info
-sqlServer: 
-  server: "" 
-  databaseName: ""
-  Schema: "" 
-
-
-# Configmap
-configmap:
-  # Using config map as env
-  env: {}
-    # HelloConfigMap: newvalue
-    # anotherkey: anothervalue
-
-
-  # Using config map as file
-  file: {}
-    # - name: "test.txt"
-    #   mountPath: "/etc/test/"
-    #   path: files/backend/appsettings.json
-
-
-
-# Secret store
-secrets: []
-  # - key: ""
-  #   var : ""
-
-
-
-# Ingress
-ingress: 
-  enable: true
-  host: "test.sysopcloud.online"
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
-  paths:
-    - prefix: "/"
+    configmap:
+      env:
+        ASPNETCORE_ENVIRONMENT: Development

@@ -27,10 +27,8 @@ app.kubernetes.io/kind: job
 
 {{/* annotation-ingress */}}
 {{- define "annotation-ingress" -}}
-appgw.ingress.kubernetes.io/appgw-ssl-certificate: certficate-ae-eco-ssl-dev
-appgw.ingress.kubernetes.io/backend-protocol: http
-appgw.ingress.kubernetes.io/ssl-redirect: "true"
-kubernetes.io/ingress.class: azure/application-gateway
+kubernetes.io/ingress.class: nginx
+kubernetes.io/tls-acme: "true"
 {{- end -}}
 
 

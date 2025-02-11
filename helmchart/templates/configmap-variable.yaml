@@ -1,0 +1,11 @@
+{{- if .Values.configmap.env }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fullname" . }}-var
+  labels:
+    {{- include "labels" . | indent 4 }}
+data:
+{{ toYaml .Values.configmap.env | indent 2 }}
+---
+{{- end }}

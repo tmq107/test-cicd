@@ -1,0 +1,92 @@
+# Setting global variable
+global:
+  instance: "dev" # Environment
+  appName: "test" # App name
+
+# Name of services
+name: "test"
+
+# Number of replicas
+replicas: 1
+
+# Image of service
+image:
+  name: "nginx"
+  tag: "test"
+
+
+# Port of services
+port: ""
+
+
+# Resource of service
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 200Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+
+
+# Probe for service
+livenessProbe: {}
+  # httpGet:
+  #   path: /Swagger/index.html
+  #   port: 8080
+readinessProbe: {}
+  # httpGet:
+  #   path: /Swagger/index.html
+  #   port: 8080
+
+
+# Type of service (frontend, service, jobs)
+type: ""
+
+
+
+# Client ID and Client Secret
+clientId: ""
+
+
+# Database info
+sqlServer: 
+  server: "" 
+  databaseName: ""
+  Schema: "" 
+
+
+# Configmap
+configmap:
+  # Using config map as env
+  env: {}
+    # HelloConfigMap: newvalue
+    # anotherkey: anothervalue
+
+
+  # Using config map as file
+  file: {}
+    # - name: "test.txt"
+    #   mountPath: "/etc/test/"
+    #   path: files/backend/appsettings.json
+
+
+
+# Secret store
+secrets: []
+  # - key: ""
+  #   var : ""
+
+
+
+# Ingress
+ingress: 
+  enable: true
+  host: "test.sysopcloud.online"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  paths:
+    - prefix: "/"

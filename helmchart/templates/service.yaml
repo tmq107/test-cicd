@@ -1,0 +1,16 @@
+{{- if .Values.port -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "fullname" . }}-svc
+  labels:
+    {{- include "labels" . | indent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
+      protocol: TCP
+  selector:
+    {{- include "labels" . | indent 4 }}
+{{- end }}

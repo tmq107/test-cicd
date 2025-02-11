@@ -1,0 +1,13 @@
+{{- if .Values.configmap.file }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fullname" . }}-file
+  labels:
+{{ include "labels" . | indent 4 }}
+data:
+{{- range $file := .Values.configmap.file }}
+  {{ $file.name }}: |-
+{{ $file.data | indent 4 }}
+{{- end }}
+{{- end }}

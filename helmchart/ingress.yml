@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/appName: test
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/kind: service
+    app.kubernetes.io/serviceName: backend
+    argocd.argoproj.io/instance: test
+  name: new
+  namespace: test
+spec:
+  rules:
+    - host: test1.sysopcloud.online
+      http:
+        paths:
+          - backend:
+              service:
+                name: test-backend-production-svc
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix

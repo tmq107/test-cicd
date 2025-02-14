@@ -10,7 +10,8 @@ metadata:
     app.kubernetes.io/kind: service
     app.kubernetes.io/serviceName: backend
     argocd.argoproj.io/instance: test
-  name: REPLACE_WITH_NAME
+  name: test-REPLACE_WITH_YOUR_BRANCH-ing
+  namespace: test-REPLACE_WITH_YOUR_BRANCH
 spec:
   rules:
     - host: REPLACE_WITH_YOUR_DOMAIN
@@ -18,8 +19,8 @@ spec:
         paths:
           - backend:
               service:
-                name: REPLACE_WITH_YOUR_BACKEND
+                name: test-backend-REPLACE_WITH_YOUR_BRANCH-svc
                 port:
-                  number: REPLACE_WITH_YOUR_PORT
+                  number: 80
             path: /
             pathType: Prefix

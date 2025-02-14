@@ -1,8 +1,5 @@
 host:
-  - "test1.sysopcloud.online"
-  - "test2.sysopcloud.online"
-  - "test3.sysopcloud.online"
-
-backend: 
-  name: test-backend-production-svc
-  port: 80
+  production:
+    - "test1.sysopcloud.online"
+    - "test2.sysopcloud.online"
+    - "test3.sysopcloud.online"

@@ -9,7 +9,7 @@ on:
 
 env:
   working_directory: "host.yml"
-  helmchart_directory: "helmchart"
+  helmchart_directory: "ingress"
 
 jobs:
   build:

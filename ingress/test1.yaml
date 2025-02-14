@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: 'true'
+    cert-manager.io/cluster-issuer: "letsencrypt"
+  labels:
+    app.kubernetes.io/appName: test
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/kind: service
+    app.kubernetes.io/serviceName: backend
+    argocd.argoproj.io/instance: test
+  name: test-test1-production-ing
+  namespace: test-production
+spec:
+  rules:
+    - host: test1.sysopcloud.online
+      http:
+        paths:
+          - backend:
+              service:
+                name: test-backend-production-svc
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix

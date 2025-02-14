@@ -4,6 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: 'true'
+    cert-manager.io/cluster-issuer: "letsencrypt"
   labels:
     app.kubernetes.io/appName: test
     app.kubernetes.io/instance: production

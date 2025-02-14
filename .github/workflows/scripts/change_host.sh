@@ -23,6 +23,7 @@ replace_host(){
                 echo "❌ Website $host does not exist. Creating YAML..."
                 sed -e "s/REPLACE_WITH_YOUR_DOMAIN/$host/g" sample/ingress.yaml > "$file_path"
                 sed -i "s/REPLACE_WITH_YOUR_BRANCH/$branch/g" "$file_path"
+                sed -i "s/REPLACE_WITH_NAME/$name/g" "$file_path"
                 valid_files["$file_path"]=1
             fi
         done   

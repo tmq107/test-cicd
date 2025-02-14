@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/kind: service
     app.kubernetes.io/serviceName: backend
     argocd.argoproj.io/instance: test
-  name: test-REPLACE_WITH_YOUR_BRANCH-ing
+  name: test-REPLACE_WITH_NAME-REPLACE_WITH_YOUR_BRANCH-ing
   namespace: test-REPLACE_WITH_YOUR_BRANCH
 spec:
   rules:

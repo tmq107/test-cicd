@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'host.yml'
 
 env:
   working_directory: "host.yml"
